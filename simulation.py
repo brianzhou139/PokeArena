@@ -3,10 +3,8 @@ import json
 import random 
 import sys
 
-
 # constants
 POKEMON_BASE_URL="https://pokeapi.co/api/v2/pokemon/"
-
 
 class Pokemon:
     def __init__(self, name,label=None):
