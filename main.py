@@ -30,6 +30,13 @@ def main():
     # console args
     s_name=sys.argv[0]
     args=sys.argv[1:]
+    # checking if the number of arguments is correct
+    if len(args)<3:
+        print("Too few Arguments provided")
+        print("usage: python3 main.py -b <pokemon1_name> <pokemon2_name>")
+        print("or")
+        print("usage : python3 main.py -b <first_team_file> <second_team_file>")
+        return
     mode=args[0]
     nameOrFile1=args[1]
     nameOrFile2=args[2]
