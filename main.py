@@ -7,7 +7,7 @@ from simulation import startTeamBattle
 # retrieving pokemon team members from a text file
 def getDataFromFile(file_name):
     result=set()
-    # open the data file
+    # open the data file 
     file = open(file_name,"r")
     # read the file as a list
     data = file.readlines()
@@ -17,8 +17,11 @@ def getDataFromFile(file_name):
     # handling the lines 
     for line in data:
         line=line.strip()
+        line=line.replace(" ",",")
         line=line.split(",")
         for word in line:
+            if len(word)==0:
+                continue
             word=word.lower()
             result.add(word)
     return list(result)

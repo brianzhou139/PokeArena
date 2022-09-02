@@ -61,9 +61,10 @@ class Pokemon:
         #print(self.moves)
 
 class Move:
-    def __init__(self,index,source_poke,destination_poke):
+    def __init__(self,index,source_poke,destination_poke,level):
         self.move_name=source_poke.moves[index]["name"]
         self.move_url=source_poke.moves[index]["url"]
+        self.move_level=level
         self.move_power=None 
         self.move_damage=None
         self.getMoveData(source_poke,destination_poke)
@@ -86,7 +87,7 @@ class Move:
             # damage inflicted on the opponent
             attack=source_poke.getBaseStatsAttack()
             defense=destination_poke.getBaseStatsDefense()
-            self.move_damage=((2 * self.move_power * attack) / defense) / 50 + 2
+            self.move_damage=((2 *self.move_level * self.move_power * attack) / defense) / 50 + 2
             self.move_damage=round(self.move_damage,3)
             destination_poke.inflictDamage(self.move_damage)
             self.showMoveResults(source_poke,destination_poke)
@@ -113,13 +114,13 @@ class Move:
         #print(self.moves)
 
 # simulates a battle between two pokemons
-def battleBetweenTwoPokemons(playerA,playerB):
+def battleBetweenTwoPokemons(playerA,playerB,level):
     isFirst=True
     while(playerA.getHp()>0 and playerB.getHp()>0):
         if isFirst:
-            move=Move(playerA.getMoveIndex(),playerA,playerB)
+            move=Move(playerA.getMoveIndex(),playerA,playerB,level)
         else:
-            move=Move(playerB.getMoveIndex(),playerB,playerA)
+            move=Move(playerB.getMoveIndex(),playerB,playerA,level)
         isFirst=not isFirst
     
     if playerA.getHp()>playerB.getHp():
@@ -132,7 +133,7 @@ def battleBetweenTwoPokemons(playerA,playerB):
 def startBattle(pokemonName1,pokemonName2):
     playerA=Pokemon(pokemonName1)
     playerB=Pokemon(pokemonName2)
-    result=battleBetweenTwoPokemons(playerA,playerB)
+    result=battleBetweenTwoPokemons(playerA,playerB,1)
     print(result['winner']+" has won")
 
 def startTeamBattle(teamA,teamB):
@@ -153,7 +154,7 @@ def startTeamBattle(teamA,teamB):
     while(len(listA)>0 and len(listB)>0):
         min_size=min(len(listA),len(listB))
         for i in range(0,min_size):
-            result=battleBetweenTwoPokemons(listA[i],listB[i])
+            result=battleBetweenTwoPokemons(listA[i],listB[i],2)
             if listA[i].getName()==result['loser']:
                 listA.remove(listA[i])
                 break
