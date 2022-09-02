@@ -3,21 +3,27 @@ import json
 import random 
 import sys
 
+
+# constants
+POKEMON_BASE_URL="https://pokeapi.co/api/v2/pokemon/"
+
+
 class Pokemon:
-    def __init__(self, name):
+    def __init__(self, name,label=None):
         self.name = name
-        self.hp=None
-        self.base_stat_attack=None 
-        self.base_stat_defense=None
-        self.moves=[]
+        self.label = label
+        self.hp = None
+        self.base_stat_attack = None 
+        self.base_stat_defense = None
+        self.moves = []
         self.getPokeData()
 
     #function to get data from the PokeApi
     def getPokeData(self):
         try:
-            r = requests.get("https://pokeapi.co/api/v2/pokemon/" + self.name)
+            r = requests.get(POKEMON_BASE_URL + self.name)
             r.raise_for_status()
-            response=r.json()
+            response = r.json()
 
             # base stats
             self.hp = response["stats"][0]["base_stat"]
@@ -26,7 +32,10 @@ class Pokemon:
             for move in response["moves"]:
                 self.moves.append(move["move"])
         except requests.exceptions.HTTPError as err:
-            print("pokemon data not found")
+            if self.label==None:
+                print("\""+self.name+"\" not found, are you sure the name is correct?")
+            else:
+                print(self.label+" member not found, are you sure \""+self.name+"\" is a pokemon name?")
             raise SystemExit(err)
     # get : returns the base_stats_attack
     def getBaseStatsAttack(self):
@@ -144,10 +153,10 @@ def startTeamBattle(teamA,teamB):
 
     # filling team info using the team names
     for ta in teamA:
-        teamItem=Pokemon(ta)
+        teamItem=Pokemon(ta,"Team A")
         listA.append(teamItem)
     for tb in teamB:
-        teamItem=Pokemon(tb)
+        teamItem=Pokemon(tb,"Team B")
         listB.append(teamItem)
 
     # battle
