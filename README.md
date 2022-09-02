@@ -7,6 +7,10 @@ A Pokemon battle simulator that lets you battle Pokémon against each other usin
 - You can battle any two Pokemon against each other that are in the PokeAPI database
 - You can create teams  of Pokemons and battle other trainers' teams, the first trainer to have all of their Pokemon faint loses the battle.
 
+## Prerequisites
+* python3
+* internet
+
 ## Quick start
 
 The code was tested on servers running Debian GNU/Linux and will work correctly on any clean system.
