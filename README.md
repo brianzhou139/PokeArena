@@ -48,7 +48,7 @@ where:<br/>
 
 Each file must contain a list of team members separated by commas, spaces, or newlines.
 
-#### Example 
+#### Example
 ```sh
 $ python3 main.py -b teamA.txt teamB.txt
 ```
