@@ -27,8 +27,8 @@ To simulate a battle between two pokemons of choice, launch the app using the fo
 ```sh
 $ python3 main.py -b <pokemon1_name> <pokemon2_name>
 ```
-where: 
-<pokemon1_name> – name of pokemon e.g bulbasaur,
+where:<br/>
+<pokemon1_name> – name of pokemon e.g bulbasaur,<br/>
 <pokemon2_name> – name of pokemon e.g charizard.
 
 #### Example 
