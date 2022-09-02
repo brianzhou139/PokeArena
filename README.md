@@ -9,8 +9,8 @@ A Pokemon battle simulator that lets you battle Pokémon against each other usin
 
 ## Prerequisites
 * python3
-* internet<br/>
-##### The code solely relies on built-in modules.<br /><br />
+* internet
+#### The code solely relies on built-in modules.<br/>
 
 ## Quick start
 
